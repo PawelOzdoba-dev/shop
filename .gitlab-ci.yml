@@ -1,0 +1,6 @@
+#tworzymy krok do testów
+test:
+  stage: test
+  image: maven:latest
+  script:
+    - mvn $MAVEN_CLI_OPTS test
