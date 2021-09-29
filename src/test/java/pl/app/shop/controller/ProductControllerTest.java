@@ -43,15 +43,15 @@ class ProductControllerTest {
         Category savedCategory = Category.builder().name("AGD").build();
 //        Category savedCategory = Category.builder().name("AGD").build();
 
-        categoryRepository.save(savedCategory);
+        Category category = categoryRepository.save(savedCategory);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/products")
-                .param("startDate", "2021-08-aa")
+                .param("startDate", "2021-08-01")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(ProductDto.builder()
 
                         .name("PRALKA")
-                        .categoryId(savedCategory.getId())
+                        .categoryId(category.getId())
                         .build())))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
